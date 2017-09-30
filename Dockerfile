@@ -7,7 +7,7 @@ RUN cd /build && ./gradlew halyard-web:installDist -x test -Prelease.version=$HA
 
 FROM openjdk:8u131-jre-alpine
 COPY --from=0 /build/halyard-web/build/install /usr/local/share
-RUN apk add --update bash; \
+RUN apk add --update bash ca-certificates; \
     rm -rf /var/cache/apk/*; \
     ln -s /usr/local/share/halyard/bin/hal /usr/local/bin/; \
     ln -s /usr/local/share/halyard/bin/halyard /usr/local/bin/
